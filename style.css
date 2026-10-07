@@ -1,0 +1,135 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    background-color: #f5f5f5;
+    font-family: Arial,sans-serif;
+}
+h1{
+    color: #333;
+    text-align: center;
+    margin-top: 30px;
+    font-size: 40px;
+}
+h1:hover{
+    color: navy;
+    transform: translateY(-5px);
+}
+p{
+    text-align: center;
+}
+section{
+    max-width: 1100px;
+    margin: auto;
+    padding: 20px;
+    }
+h2{
+    text-align: center;
+    margin:0 auto;
+    border: 5px solid #222;
+    padding: 5px 15px;
+    display: table;
+    background-color: black;
+    color: white;
+    transition: 0.3s;
+    font-size: 25px;
+}
+h2:hover{
+    background-color: #1e3a5f;
+    transform: translateY(-3px);
+    color: burlywood;
+    border-color: burlywood;
+    }
+.classic-t-shirt , .hoodie , .jeans , .sneakers , .jacket , .sweatshirt , .cap
+, .poloshirt , .shorts , .dress , .coat , .backpack{
+    background-color: white;
+    padding: 20px;
+    width: 280px;
+    min-height: 500px;
+    margin: auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgpa(0, 0, 0, 0.15);
+    box-sizing: border-box;
+   }
+section img{
+    width: 100%;
+    height: 250px;
+    object-fit: contain;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+section img:hover{
+    transform: scale(1.04);
+}
+h3{
+    margin: 15px 0 10px;
+    font-size: 22px;
+    border: 2px solid #222;
+    padding: 5px 10px;
+    border-radius: 6px;
+    transition: 0.3s;
+}
+h3:hover{
+    background-color: #222;
+    color: white;
+    border-color: #222;
+    transform: translateY(-2px);
+}
+section div p{
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+button{
+    background-color: #222;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 8px;
+    transition: 0.3s;
+    cursor: pointer;
+}
+#shopping-cart button {
+    padding: 6px 12px;
+    font-size: 12px;
+    border-radius: 5px;
+}
+
+#shopping-cart .quantity-btn {
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    font-size: 14px;
+}
+
+#shopping-cart .remove-btn {
+    padding: 5px 10px;
+    font-size: 11px;
+}
+button:hover{
+    background-color: #1e3a5f;
+    transform: translateY(-2px);
+}
+.products{
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top:50px ;
+}
+.products > div:hover{
+    transform: translateY(-5px);
+    transition: 0.3s;
+}
+@media (max-width: 768px) {
+    .products {
+        justify-content: center;
+    }
+}
