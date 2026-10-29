@@ -1,102 +1,28 @@
-// ==========================================
-// Fashion Store - Complete JavaScript
-// ==========================================
-
-
-// ==========================================
-// 1. تحديد عناصر الصفحة
-// ==========================================
-
 const products = document.querySelectorAll(".products > div");
-
-
-// ==========================================
-// 2. بيانات سلة المشتريات
-// ==========================================
-
 let cartProducts = JSON.parse(localStorage.getItem("fashionCart")) || [];
-
-
-// ==========================================
-// 3. إنشاء قسم سلة المشتريات
-// ==========================================
-
 const cartSection = document.createElement("section");
-
 cartSection.id = "shopping-cart";
-
-
-// ==========================================
-// 4. عنوان السلة
-// ==========================================
-
 const cartTitle = document.createElement("h2");
-
 cartTitle.textContent = "Shopping Cart";
-
 cartSection.appendChild(cartTitle);
-
-
-// ==========================================
-// 5. عدد المنتجات
-// ==========================================
-
 const cartCount = document.createElement("p");
-
 cartCount.id = "cart-count";
-
 cartSection.appendChild(cartCount);
-
-
-// ==========================================
-// 6. مكان عرض المنتجات
-// ==========================================
-
 const cartItems = document.createElement("div");
-
 cartItems.id = "cart-items";
-
 cartSection.appendChild(cartItems);
-
-
-// ==========================================
-// 7. الإجمالي
-// ==========================================
-
 const cartTotal = document.createElement("p");
-
 cartTotal.id = "cart-total";
-
 cartSection.appendChild(cartTotal);
-
-
-// ==========================================
-// 8. زر مسح السلة
-// ==========================================
-
 const clearCartButton = document.createElement("button");
-
 clearCartButton.textContent = "Clear Cart";
-
 clearCartButton.id = "clear-cart";
 const placeOrderButton = document.createElement("button");
 placeOrderButton.textContent = "Place Order";
 placeOrderButton.id = "place-order";
-
 cartSection.appendChild(clearCartButton);
 cartSection.appendChild(placeOrderButton);
-
-// ==========================================
-// 9. إضافة السلة إلى الصفحة
-// ==========================================
-
 document.body.appendChild(cartSection);
-
-
-// ==========================================
-// 10. حفظ السلة في Local Storage
-// ==========================================
-
 function saveCart() {
 
     localStorage.setItem(
@@ -107,27 +33,14 @@ function saveCart() {
 }
 
 
-// ==========================================
-// 11. تحديث السلة على الصفحة
-// ==========================================
 
 function updateCart() {
 
-    // مسح محتوى السلة القديم
     cartItems.innerHTML = "";
-
-
-    // إجمالي السعر
+ 
     let total = 0;
 
-
-    // إجمالي عدد القطع
     let totalQuantity = 0;
-
-
-    // ======================================
-    // إذا كانت السلة فارغة
-    // ======================================
 
     if (cartProducts.length === 0) {
 
@@ -139,89 +52,45 @@ function updateCart() {
 
     }
 
-
-    // ======================================
-    // عرض المنتجات
-    // ======================================
-
     cartProducts.forEach(function(product, index) {
 
-
-        // حساب إجمالي المنتج
         const productTotal =
             product.price * product.quantity;
 
-
-        // إضافة السعر للإجمالي
         total = total + productTotal;
 
-
-        // إضافة الكمية للإجمالي
         totalQuantity =
             totalQuantity + product.quantity;
 
-
-        // ==================================
-        // إنشاء عنصر المنتج
-        // ==================================
 
         const item = document.createElement("div");
 
         item.className = "cart-item";
 
 
-        // ==================================
-        // اسم المنتج
-        // ==================================
-
         const itemName = document.createElement("span");
 
         itemName.textContent = product.name;
-
-
-        // ==================================
-        // السعر
-        // ==================================
 
         const itemPrice = document.createElement("span");
 
         itemPrice.textContent =
             " $" + product.price;
 
-
-        // ==================================
-        // زر ناقص
-        // ==================================
-
         const decreaseButton =
             document.createElement("button");
 
         decreaseButton.textContent = "-";
-
-
-        // ==================================
-        // عرض الكمية
-        // ==================================
 
         const quantity = document.createElement("span");
 
         quantity.textContent =
             " " + product.quantity + " ";
 
-
-        // ==================================
-        // زر زائد
-        // ==================================
-
         const increaseButton =
             document.createElement("button");
 
         increaseButton.textContent = "+";
-
-
-        // ==================================
-        // إجمالي المنتج
-        // ==================================
 
         const productTotalElement =
             document.createElement("span");
@@ -229,20 +98,10 @@ function updateCart() {
         productTotalElement.textContent =
             " = $" + productTotal;
 
-
-        // ==================================
-        // زر الحذف
-        // ==================================
-
         const removeButton =
             document.createElement("button");
 
         removeButton.textContent = "Remove";
-
-
-        // ==================================
-        // زر تقليل الكمية
-        // ==================================
 
         decreaseButton.addEventListener(
             "click",
@@ -266,11 +125,6 @@ function updateCart() {
             }
         );
 
-
-        // ==================================
-        // زر زيادة الكمية
-        // ==================================
-
         increaseButton.addEventListener(
             "click",
             function() {
@@ -283,11 +137,6 @@ function updateCart() {
 
             }
         );
-
-
-        // ==================================
-        // زر الحذف
-        // ==================================
 
         removeButton.addEventListener(
             "click",
@@ -303,10 +152,6 @@ function updateCart() {
         );
 
 
-        // ==================================
-        // إضافة العناصر للمنتج
-        // ==================================
-
         item.appendChild(itemName);
 
         item.appendChild(itemPrice);
@@ -321,35 +166,16 @@ function updateCart() {
 
         item.appendChild(removeButton);
 
-
-        // ==================================
-        // إضافة المنتج للسلة
-        // ==================================
-
         cartItems.appendChild(item);
 
     });
-
-
-    // ======================================
-    // تحديث عدد المنتجات
-    // ======================================
 
     cartCount.textContent =
         "Items in Cart: " + totalQuantity;
 
 
-    // ======================================
-    // تحديث الإجمالي
-    // ======================================
-
     cartTotal.textContent =
         "Total: $" + total;
-
-
-    // ======================================
-    // التحكم في زر Clear Cart
-    // ======================================
 
     if (cartProducts.length === 0) {
 
@@ -363,11 +189,6 @@ function updateCart() {
 
 }
 
-
-// ==========================================
-// 12. زر Clear Cart
-// ==========================================
-
 clearCartButton.addEventListener(
     "click",
     function() {
@@ -380,9 +201,6 @@ clearCartButton.addEventListener(
 
     }
 );
-// ==========================================
-// Order Form
-// ==========================================
 
 placeOrderButton.addEventListener("click", function() {
 
@@ -391,7 +209,6 @@ placeOrderButton.addEventListener("click", function() {
         return;
     }
 
-    // Create Order Form
     const orderFormBox = document.createElement("div");
     orderFormBox.id = "order-form-box";
 
@@ -442,11 +259,6 @@ placeOrderButton.addEventListener("click", function() {
 
     document.body.appendChild(orderFormBox);
 
-
-    // ==========================================
-    // Order Form Styles
-    // ==========================================
-
     const orderStyle = document.createElement("style");
 
     orderStyle.textContent = `
@@ -491,11 +303,6 @@ placeOrderButton.addEventListener("click", function() {
 
     document.head.appendChild(orderStyle);
 
-
-    // ==========================================
-    // Confirm Order
-    // ==========================================
-
     document
         .querySelector("#confirm-order")
         .addEventListener("click", function() {
@@ -528,11 +335,6 @@ placeOrderButton.addEventListener("click", function() {
                 return;
 
             }
-
-
-           // ==========================================
-// Order Summary
-// ==========================================
 
 const summaryBox = document.createElement("div");
 
@@ -584,11 +386,6 @@ summaryBox.innerHTML = summaryHTML;
 
 document.body.appendChild(summaryBox);
 
-
-// ==========================================
-// Order Summary Styles
-// ==========================================
-
 const summaryStyle = document.createElement("style");
 
 summaryStyle.textContent = `
@@ -624,11 +421,6 @@ summaryStyle.textContent = `
 
 document.head.appendChild(summaryStyle);
 
-
-// ==========================================
-// Finish Order
-// ==========================================
-
 document
     .querySelector("#finish-order")
     .addEventListener("click", function() {
@@ -649,11 +441,6 @@ document
 
         });
 
-
-    // ==========================================
-    // Cancel Order
-    // ==========================================
-
     document
         .querySelector("#cancel-order")
         .addEventListener("click", function() {
@@ -665,20 +452,11 @@ document
 });
 
 
-
-// ==========================================
-// 13. تشغيل أزرار Add to Cart
-// ==========================================
-
 products.forEach(function(product) {
 
-
-    // اسم المنتج
     const productName =
         product.querySelector("h3").textContent;
 
-
-    // السعر
     const productPrice =
         parseFloat(
             product
@@ -687,22 +465,14 @@ products.forEach(function(product) {
                 .replace("$", "")
         );
 
-
-    // زر Add to Cart
     const addButton =
         product.querySelector("button");
 
-
-    // ======================================
-    // عند الضغط على Add to Cart
-    // ======================================
 
     addButton.addEventListener(
         "click",
         function() {
 
-
-            // البحث عن المنتج في السلة
             const existingProduct =
                 cartProducts.find(function(item) {
 
@@ -710,21 +480,11 @@ products.forEach(function(product) {
 
                 });
 
-
-            // ==================================
-            // إذا كان المنتج موجودًا
-            // ==================================
-
             if (existingProduct) {
 
                 existingProduct.quantity++;
 
             }
-
-
-            // ==================================
-            // إذا كان المنتج غير موجود
-            // ==================================
 
             else {
 
@@ -740,12 +500,8 @@ products.forEach(function(product) {
 
             }
 
-
-            // حفظ السلة
             saveCart();
 
-
-            // تحديث السلة
             updateCart();
 
         }
@@ -753,15 +509,7 @@ products.forEach(function(product) {
 
 });
 
-
-// ==========================================
-// 14. تشغيل السلة عند فتح الصفحة
-// ==========================================
-
 updateCart();
-// ==========================================
-// Seasons
-// ==========================================
 
 const seasonBox = document.createElement("div");
 seasonBox.id = "season-box";
@@ -797,11 +545,6 @@ document.body.insertBefore(
     document.querySelector("#shopping-cart")
 );
 
-
-// ==========================================
-// Season Styles
-// ==========================================
-
 const seasonStyle = document.createElement("style");
 
 seasonStyle.textContent = `
@@ -830,11 +573,6 @@ seasonStyle.textContent = `
 
 document.head.appendChild(seasonStyle);
 
-
-// ==========================================
-// Change Season
-// ==========================================
-
 seasonSelect.addEventListener("change", function() {
 
     const selectedSeason = seasonSelect.value;
@@ -858,9 +596,6 @@ seasonSelect.addEventListener("change", function() {
     }
 
 });
-// ==========================================
-// Product Search
-// ==========================================
 
 const searchBox = document.createElement("div");
 searchBox.id = "search-box";
@@ -877,11 +612,6 @@ productsSection.parentNode.insertBefore(
     searchBox,
     productsSection
 );
-
-
-// ==========================================
-// Search Styles
-// ==========================================
 
 const searchStyle = document.createElement("style");
 
@@ -922,11 +652,6 @@ searchStyle.textContent = `
 
 document.head.appendChild(searchStyle);
 
-
-// ==========================================
-// Search Function
-// ==========================================
-
 searchInput.addEventListener("input", function() {
 
     const searchText =
@@ -956,10 +681,6 @@ searchInput.addEventListener("input", function() {
     });
 
 });
-// ==========================================
-// Product Category Filter
-// ==========================================
-
 const filterBox = document.createElement("div");
 filterBox.id = "filter-box";
 
@@ -989,11 +710,6 @@ filterBox.appendChild(filterSelect);
 // Put Filter Under Search
 document.querySelector("#search-box").after(filterBox);
 
-
-// ==========================================
-// Filter Styles
-// ==========================================
-
 const filterStyle = document.createElement("style");
 
 filterStyle.textContent = `
@@ -1018,11 +734,6 @@ filterStyle.textContent = `
 
 document.head.appendChild(filterStyle);
 
-
-// ==========================================
-// Product Categories
-// ==========================================
-
 const productCategories = {
 
     "Classic T-Shirt": "clothes",
@@ -1040,11 +751,6 @@ const productCategories = {
     "Black Cap": "accessories",
     "Backpack": "accessories"
 };
-
-
-// ==========================================
-// Category Filter Function
-// ==========================================
 
 filterSelect.addEventListener("change", function() {
 
